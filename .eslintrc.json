@@ -7,6 +7,6 @@
 		"plugin:@typescript-eslint/recommended"
 	],
 	"rules": {
-		"semi": ["error", "always"]
+		"semi": ["warn", "always"]
 	}
 }
