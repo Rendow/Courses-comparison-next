@@ -1,0 +1,12 @@
+{
+	"extends": [
+		"stylelint-config-standard",
+		"stylelint-config-clean-order"
+	],
+	"rules": {
+		"indentation": [
+			"tab"
+		],
+		"color-hex-case": "upper"
+	}
+}
