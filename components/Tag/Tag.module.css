@@ -22,21 +22,21 @@
 }
 
 .red {
+	font-weight: bold;
 	color: var(--white);
 	background:  #DE0000;
-	font-weight: bold;
 }
 
 .grey {
+	font-weight: bold;
 	color: var(--white);
 	background:  #B3C0D9;
-	font-weight: bold;
 }
 
 .green {
+	font-weight: bold;
 	color: var(--green);
 	background:  var(--green-light);
-	font-weight: bold;
 }
 
 .primary {

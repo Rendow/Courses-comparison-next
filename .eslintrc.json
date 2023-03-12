@@ -7,6 +7,12 @@
 		"plugin:@typescript-eslint/recommended"
 	],
 	"rules": {
-		"semi": ["warn", "always"]
+		"semi": ["warn", "always"],
+		"@typescript-eslint/no-empty-interface": [
+			"error",
+			{
+				"allowSingleExtends": true
+			}
+		]
 	}
 }

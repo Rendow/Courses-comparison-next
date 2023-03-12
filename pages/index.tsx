@@ -1,8 +1,9 @@
 import { useState } from "react";
 import {Button, Htag, P, Rating, Tag} from "../components";
+import { withLayout } from "../layout/Layout";
 
 function Home() {
-	const [first, setfirst] = useState<number>(0)
+	const [first, setfirst] = useState<number>(0);
 	return (
 		<>
 			<Htag tag='h1'>Test </Htag>
@@ -18,4 +19,4 @@ function Home() {
 	);
 }
 
-export default Home;
+export default withLayout(Home);

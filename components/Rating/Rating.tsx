@@ -15,8 +15,8 @@ export const Rating = ({
 
 
 	useEffect(() => {
-		constructRating(rating)
-	}, [rating])
+		constructRating(rating);
+	}, [rating]);
 	
 	const constructRating = (currentRating: number) => {
 		const updatedArray = rattingArray.map((r:JSX.Element, index: number) => {
@@ -39,22 +39,22 @@ export const Rating = ({
 			
 			);
 		});
-		setRattingArray(updatedArray)
+		setRattingArray(updatedArray);
 	};
 
 	const changeDisplay = (index: number) => {
 		if(!isEditable) return;
 
-		return constructRating(index)
+		return constructRating(index);
 	};
 
 	const onStarClick = (index: number) => {
 		if(!isEditable || !setRating) return;
-		setRating(index)
+		setRating(index);
 	};
 	const handleSpace = (index: number, e: KeyboardEvent<SVGAElement>) => {
 		if(e.code !== 'Space' || !setRating) return;
-		setRating(index)
+		setRating(index);
 	};
 
 	return (
