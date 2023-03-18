@@ -21,7 +21,6 @@ function Home({ firstCategory, menu }:HomeProps) {
 			<Tag color="green" href='_blank'> Green</Tag>
 			<Tag  color="primary" href='_blank'> sdfasd</Tag>
 			<Rating rating={first} isEditable={true} setRating={setfirst}/>
-			{menu.map( m => <li key={m._id.secondCategory}>{m._id.secondCategory}</li>)}
 		</>
 	);
 }
@@ -30,15 +29,15 @@ export default withLayout(Home);
 
 export const getStaticProps:GetStaticProps<HomeProps> = async () => {
 
-	const firstCategory = 0
-	const { data: menu } = await generalApi.getPages(firstCategory)
+	const firstCategory = 0;
+	const { data: menu } = await generalApi.getPages(firstCategory);
 
 	return {
 		props: {
 			menu,
 			firstCategory,
 		}
-	}
+	};
 };
 
 interface HomeProps extends Record<string, unknown> {
