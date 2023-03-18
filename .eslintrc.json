@@ -13,6 +13,7 @@
 			{
 				"allowSingleExtends": true
 			}
-		]
+		],
+		"max-len": ["warn", { "code": 130 }]
 	}
 }

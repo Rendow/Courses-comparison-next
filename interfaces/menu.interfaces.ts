@@ -1,15 +1,13 @@
-export interface Id {
-	secondCategory: string;
-}
-
-export interface Page {
+export interface PageItem {
 	alias: string;
 	title: string;
 	_id: string;
 	category: string;
 }
 
-export interface RootObject {
-	_id: Id;
-	pages: Page[];
+export interface MenuItem {
+	_id: {
+		secondCategory: string;
+	};
+	pages: PageItem[];
 }
