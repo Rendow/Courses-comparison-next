@@ -7,10 +7,11 @@
 	gap: 20px;
 	align-items: center;
 
-	font-weight: 500;
-	font-size: 18px;
-	line-height: 25px;
 	margin-top: 20px;
+
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 25px;
 }
 
 .firstLevelActive,
@@ -27,35 +28,44 @@
 	margin-top: 15px;
 	margin-left: 12px;
 	padding-left: 32px;
-
-	border-left: 1px solid #dfdfdf;
+	border-left: 1px solid #DFDFDF;
 }
+
+.secondLevelBlock {
+	display: none;
+}
+
+.secondLevelBlockOpened{
+	display: block;
+}
+
 .secondLevelBlockOpened:last-child {
 	margin-bottom: 20px;
 }
 
 .secondLevel {
-	margin-bottom: 10px;
 	cursor: pointer;
-	text-transform: uppercase;
-	color: var(--grey-dark);
-	font-weight: 300;
-	font-size: 12px;
-	line-height: 16px;
-}
 
-.secondLevelBlock {
+	margin-bottom: 10px;
+
+	font-size: 12px;
+	font-weight: 300;
+	line-height: 16px;
+	color: var(--grey-dark);
+	text-transform: uppercase;
 }
 
 .thirdLevel {
-	display: block;
-	margin-bottom: 10px;
 	cursor: pointer;
-	color: var(--grey-dark);
 
-	font-weight: 500;
+	display: block;
+
+	margin-bottom: 10px;
+
 	font-size: 14px;
+	font-weight: 500;
 	line-height: 19px;
+	color: var(--grey-dark);
 }
 
 .thirdLevelActive,

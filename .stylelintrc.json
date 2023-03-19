@@ -8,6 +8,7 @@
 			"tab"
 		],
 		"color-hex-case": "upper",
-		"declaration-block-no-redundant-longhand-properties": null
+		"declaration-block-no-redundant-longhand-properties": null,
+		"selector-class-pattern": null
 	}
 }

@@ -4,7 +4,7 @@ import { TopPageModel } from '../interfaces/page.interfaces';
 import { ProductModel } from '../interfaces/product.interfaces';
 
 export const generalApi = {
-	getPages: (firstCategory: number) =>
+	getPages: ({firstCategory}: {firstCategory: number}) =>
 		axios.post<MenuItem[]>(process.env.NEXT_PUBLIC_DOMAIN + '/api/top-page/find', {
 			firstCategory,
 		}),
