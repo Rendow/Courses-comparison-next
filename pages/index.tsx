@@ -30,7 +30,7 @@ export default withLayout(Home);
 export const getStaticProps:GetStaticProps<HomeProps> = async () => {
 
 	const firstCategory = 0;
-	const { data: menu } = await generalApi.getPages(firstCategory);
+	const { data: menu } = await generalApi.getPages({firstCategory});
 
 	return {
 		props: {
