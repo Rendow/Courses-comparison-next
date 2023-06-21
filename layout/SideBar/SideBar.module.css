@@ -4,10 +4,6 @@
 	align-content: start;
 }
 
-.logo { 
-	margin-top: 14px;
-}
-
 @media (max-width: 765px) {
 	.sidebar {
 		display: none;
