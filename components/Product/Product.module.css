@@ -1,0 +1,21 @@
+.product{
+	display: grid;
+	grid-template-columns: [logo-start] 70px [logo-end] 30px [title-start] calc(50% - 100px) [title-end] 1fr [price-start] auto [price-end] 40px [credit-start] auto [credit-end] 40px [rate-start] auto [rate-end];
+}
+
+.logo{
+	grid-column: logo-start / logo-end;
+	grid-row: 1 / span 2;
+}
+.title, .tags{
+	grid-column: title-start / title-end;
+}
+.price, .priceTitle {
+	grid-column: price-start / price-end;
+}
+.credit, .creditTitle {
+	grid-column: credit-start / credit-end;
+}
+.rating, .rateTitle {
+	grid-column: rate-start / rate-end;
+}

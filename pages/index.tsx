@@ -2,7 +2,7 @@ import axios from "axios";
 import { GetStaticProps } from "next";
 import { useEffect, useState } from "react";
 import { generalApi } from "../api/general";
-import {Button, Htag, P, Rating, Tag} from "../components";
+import {Button, Htag, Input, P, Rating, Search, Tag, TextArea} from "../components";
 import { MenuItem } from "../interfaces/menu.interfaces";
 import { withLayout } from "../layout/Layout";
 
@@ -21,6 +21,9 @@ function Home({ firstCategory, menu }:HomeProps) {
 			<Tag color="green" href='_blank'> Green</Tag>
 			<Tag  color="primary" href='_blank'> sdfasd</Tag>
 			<Rating rating={first} isEditable={true} setRating={setfirst}/>
+			<Input />
+			<TextArea />
+			<Search />
 		</>
 	);
 }
