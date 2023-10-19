@@ -34,7 +34,7 @@
         credit: number;
         oldPrice: number;
         characteristics: ProductCharacteristic[];
-        advantages: string;
+        advantages?: string;
         initialRating: number;
         createdAt: Date;
         updatedAt: Date;
@@ -46,6 +46,7 @@
         reviews: Review[];
         reviewCount: number;
         reviewAvg?: number;
+        disadvantages?: number;
     }
 
 
