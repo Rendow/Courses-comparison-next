@@ -1,27 +1,33 @@
-.product{
+.product {
 	display: grid;
 	grid-template-columns: [logo-start] 70px [logo-end] 30px [title-start] calc(50% - 100px) [title-end] 1fr [price-start] auto [price-end] 40px [credit-start] auto [credit-end] 40px [rate-start] auto [rate-end];
 	margin-bottom: 30px;
 	padding: 30px;
 }
 
-.logo{
+.logo {
 	grid-column: logo-start / logo-end;
 	grid-row: 1 / span 2;
 }
-.title, .tags{
+.title,
+.tags {
 	grid-column: title-start / title-end;
 }
-.price, .priceTitle {
+.price,
+.priceTitle {
 	grid-column: price-start / price-end;
 }
-.credit, .creditTitle {
+.credit,
+.creditTitle {
 	grid-column: credit-start / credit-end;
 }
-.rating, .rateTitle {
+.rating,
+.rateTitle {
 	grid-column: rate-start / rate-end;
 }
-.hr, .description, .actions {
+.hr,
+.description,
+.actions {
 	grid-column: logo-start / rate-end;
 }
 .feature {
@@ -31,7 +37,7 @@
 	grid-column: price-start / rate-end;
 }
 
-.logo img{
+.logo img {
 	border-radius: 5px;
 }
 .title {
@@ -40,7 +46,8 @@
 	line-height: 27px;
 	align-self: flex-end;
 }
-.price, .credit {
+.price,
+.credit {
 	font-style: 20px;
 	line-height: 27px;
 	align-self: flex-end;
@@ -49,48 +56,51 @@
 .rating {
 	align-self: flex-end;
 }
-.priceTitle, .rateTitle, .creditTitle {
+.priceTitle,
+.rateTitle,
+.creditTitle {
 	font-weight: 300;
 	font-size: 14px;
 	line-height: 19px;
+	white-space: nowrap;
 }
-.month{
+.month {
 	font-size: 14px;
 	line-height: 19px;
 }
-.oldPrice{
+.oldPrice {
 	margin-left: 4px;
 }
 .category {
 	margin-top: 5px;
 }
-.description{
+.description {
 	font-size: 16px;
 	line-height: 24px;
 	margin-bottom: 15px;
 }
-.reviewBtn{
+.reviewBtn {
 	margin-left: 20px;
 }
-.advBlock{
+.advBlock {
 	line-height: 22px;
 	font-size: 16px;
 }
-.advTitle{
+.advTitle {
 	font-weight: bold;
-	margin-bottom: 5px ;
+	margin-bottom: 5px;
 }
 
-.advantages{
+.advantages {
 	border-left: 2px solid var(--green);
 	padding-left: 15px;
 	margin-bottom: 20px;
 }
-.disadvantages{
+.disadvantages {
 	border-left: 2px solid var(--red);
 	padding-left: 15px;
 }
-.characteristics{
+.characteristics {
 	display: grid;
 	grid-template-columns: auto 1fr auto;
 	padding-right: 60px;
@@ -99,12 +109,82 @@
 
 	font-size: 16px;
 	line-height: 32px;
-
 }
-.characteristicName{
+.characteristicName {
 	font-weight: bold;
 }
-.characteristicDots{
+.characteristicDots {
 	border-bottom: 1px dashed var(--grey-light);
 	margin-bottom: 5px;
+}
+
+@media screen and (max-width: 1320px) {
+	.product {
+		grid-template-columns: 70px 30px auto 40px auto 40px 1fr;
+		grid-template-areas: 'logo . title title title title title' 'logo . tags tags tags tags tags' 'price price price . credit . rating' 'priceTitle priceTitle priceTitle . creditTitle . rateTitle' 'hr hr hr hr hr hr hr' 'description description description description description description description' 'feature feature feature feature feature feature feature' 'advBlock advBlock advBlock advBlock advBlock advBlock advBlock' 'hr2 hr2 hr2 hr2 hr2 hr2 hr2' 'actions actions actions actions actions actions actions';
+	}
+	.logo {
+		grid-area: logo;
+		margin-bottom: 20px;
+	}
+	.title {
+		grid-area: title;
+	}
+	.credit {
+		grid-area: credit;
+	}
+	.price {
+		grid-area: price;
+	}
+	.rating {
+		grid-area: rating;
+	}
+	.priceTitle {
+		grid-area: priceTitle;
+	}
+	.rateTitle {
+		grid-area: rateTitle;
+	}
+	.creditTitle {
+		grid-area: creditTitle;
+	}
+	.description {
+		grid-area: description;
+	}
+	.advBlock {
+		grid-area: advBlock;
+	}
+	.hr2 {
+		grid-area: hr2;
+	}
+	.actions {
+		grid-area: actions;
+	}
+	.feature {
+		grid-area: feature;
+		margin-bottom: 20px;
+	}
+	.tags {
+		grid-area: tags;
+		margin-bottom: 20px;
+	}
+	.advBlock {
+		grid-area: advBlock;
+	}
+}
+
+@media screen and (max-width: 640px) {
+	.product {
+		grid-template-columns: 70px 30px 1fr;
+		grid-template-areas: 'logo . title' 'logo . tags' 'priceTitle priceTitle price' 'creditTitle creditTitle credit' 'rateTitle rateTitle rating' 'hr hr hr' 'description description description' 'feature feature feature' 'advBlock advBlock advBlock' 'hr2 hr2 hr2' 'actions actions actions';
+	}
+	.credit {
+		margin-bottom: 10px;
+	}
+	.price {
+		margin-bottom: 10px;
+	}
+	.rating {
+		margin-bottom: 10px;
+	}
 }
