@@ -4,14 +4,14 @@ import cn from 'classnames';
 import { Input } from '../Input/Input';
 import { Button } from '../Button/Button';
 import { KeyboardEvent, useState } from 'react';
-import SearchIcon from './searchIcon.svg'
+import SearchIcon from './searchIcon.svg';
 import { useRouter } from 'next/router';
 
 
 export const Search = ({ className, ...props }: SearchProps): JSX.Element => {
 
 	const [search, setSearch] = useState('');
-	const router = useRouter()
+	const router = useRouter();
 
 	const handleKeyDown = (e:KeyboardEvent) => {
 		if(e.key === 'Enter'){

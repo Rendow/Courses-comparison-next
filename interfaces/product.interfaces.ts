@@ -10,16 +10,13 @@
         bigImage: string;
     }
 
-    export interface Review {
+    export interface ReviewModel {
         _id: string;
         name: string;
         title: string;
         description: string;
         rating: number;
-        productId: string;
         createdAt: Date;
-        updatedAt: Date;
-        __v: number;
     }
 
     export interface ProductModel {
@@ -43,7 +40,7 @@
         blog: Blog;
         companyId: string;
         clicks: number;
-        reviews: Review[];
+        reviews: ReviewModel[];
         reviewCount: number;
         reviewAvg?: number;
         disadvantages?: number;
