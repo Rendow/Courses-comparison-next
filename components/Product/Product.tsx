@@ -9,7 +9,7 @@ import { declOfNum, priceRu } from '../../helpers/helpers';
 import { Divider } from '../Divider/Divider';
 import Image from 'next/image';
 import classNames from 'classnames';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Review } from '../Review/Review';
 import { ReviewForm } from '../ReviewForm/ReviewForm';
 
@@ -17,91 +17,107 @@ export const Product = ({ product,className, ...props }: ProductProps): JSX.Elem
 
 	const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
 
-	return (
-		<>
-		<Card className={styles.product}>
-			<div className={styles.logo}>
-				<Image 
-					src={ process.env.NEXT_PUBLIC_DOMAIN + product.image}
-					alt={product.title}
-					width={70}
-					height={70}
-				/>
-			</div>
-			<div className={styles.title}>{product.title}</div>
-			<div className={styles.price}>
-				{priceRu(product.price)}
-				{product.oldPrice && 
-					<Tag className={styles.oldPrice} color='green'>
-						{priceRu(product.price - product.oldPrice)}
-					</Tag>
-				}
-			</div>
-			<div className={styles.credit}>
-				{priceRu(product.credit) }/ <span className={styles.month}>мес</span>
-			</div>
-			
-			<div className={styles.rating}><Rating rating={product.reviewAvg ?? product.initialRating}/></div>
-			<div className={styles.tags}>
-				{product.categories.map(c => <Tag className={styles.category} key={c} color='ghost'>{c}</Tag>)}
-			</div>
-			<div className={styles.priceTitle}>цена</div>
-			<div className={styles.creditTitle}>кредит</div>
-			<div className={styles.rateTitle}> {declOfNum(product.reviewCount, ['отзыв', 'отзыва','отзывов'])}</div>
-			<Divider className={styles.hr}/>
-			
-			<div className={styles.description}>{product.description} </div>
-			<div className={styles.feature}> 
-				{product.characteristics.map(el => {
-					return <div key={el.name} className={styles.characteristics}>
-						<span className={styles.characteristicName}> {el.name}</span>
-						<span className={styles.characteristicDots}/>
-						<span className={styles.characteristicValue}> {el.value}</span>
-					</div>;
-				})}
-			</div>
-			<div className={styles.advBlock}>
-				{product.advantages &&
-				<div className={styles.advantages}>
-					<div className={styles.advTitle}>Преимущества</div>
-					<div>{product.advantages}</div>
-				</div>}
-				{product.disadvantages &&
-				<div className={styles.disadvantages}>
-					<div className={styles.advTitle}>Недостатки</div>
-					<div>{product.disadvantages}</div>
-				</div>}
-			</div>
-			<Divider className={classNames(styles.hr, styles.hr2) }/>
-			
-			<div className={styles.actions}>
-				<Button appearance='primary'>
-					Узнать подробнее
-				</Button>
-				<Button 
-					appearance='ghost' 
-					arrow={isReviewOpened ? 'down' : 'right' }
-					className={styles.reviewBtn}
-					onClick={() => setIsReviewOpened(prev => !prev)}
-				>
-					Читать отзывы
-				</Button>
-			</div>
-		</Card>
+	const reviewRef = useRef<HTMLDivElement>(null);
 
-		<Card color='blue' className={classNames(styles.review,{
-			[styles.opened]: isReviewOpened,
-			[styles.closed]: !isReviewOpened,
-		} ) }>
-				{product.reviews.map(el => (
-					 <>
-							<Review  review={el} key={el._id}/>
-							<Divider/>
-					</>
-				))}
-				<ReviewForm productId={product._id} />
-		</Card>
-		</>
+	const scrollToReview = () => {
+		setIsReviewOpened(true);
+		reviewRef.current?.scrollIntoView({
+			behavior:'smooth',
+			block:'start',
+		});
+	};
+	
+	return (
+		<div className={className}>
+			<Card className={styles.product}>
+				<div className={styles.logo}>
+					<Image 
+						src={ process.env.NEXT_PUBLIC_DOMAIN + product.image}
+						alt={product.title}
+						width={70}
+						height={70}
+					/>
+				</div>
+				<div className={styles.title}>{product.title}</div>
+				<div className={styles.price}>
+					{priceRu(product.price)}
+					{product.oldPrice && 
+						<Tag className={styles.oldPrice} color='green'>
+							{priceRu(product.price - product.oldPrice)}
+						</Tag>
+					}
+				</div>
+				<div className={styles.credit}>
+					{priceRu(product.credit) }/ <span className={styles.month}>мес</span>
+				</div>
+				
+				<div className={styles.rating}><Rating rating={product.reviewAvg ?? product.initialRating}/></div>
+				<div className={styles.tags}>
+					{product.categories.map(c => <Tag className={styles.category} key={c} color='ghost'>{c}</Tag>)}
+				</div>
+				<div className={styles.priceTitle}>цена</div>
+				<div className={styles.creditTitle}>кредит</div>
+				<div className={styles.rateTitle}> 
+					<a href="#ref" onClick={scrollToReview}> {declOfNum(product.reviewCount, ['отзыв', 'отзыва','отзывов'])}</a>
+				</div>
+				<Divider className={styles.hr}/>
+				
+				<div className={styles.description}>{product.description} </div>
+				<div className={styles.feature}> 
+					{product.characteristics.map(el => {
+						return <div key={el.name} className={styles.characteristics}>
+							<span className={styles.characteristicName}> {el.name}</span>
+							<span className={styles.characteristicDots}/>
+							<span className={styles.characteristicValue}> {el.value}</span>
+						</div>;
+					})}
+				</div>
+				<div className={styles.advBlock}>
+					{product.advantages &&
+					<div className={styles.advantages}>
+						<div className={styles.advTitle}>Преимущества</div>
+						<div>{product.advantages}</div>
+					</div>}
+					{product.disadvantages &&
+					<div className={styles.disadvantages}>
+						<div className={styles.advTitle}>Недостатки</div>
+						<div>{product.disadvantages}</div>
+					</div>}
+				</div>
+				<Divider className={classNames(styles.hr, styles.hr2) }/>
+				
+				<div className={styles.actions}>
+					<Button appearance='primary'>
+						Узнать подробнее
+					</Button>
+					<Button 
+						appearance='ghost' 
+						arrow={isReviewOpened ? 'down' : 'right' }
+						className={styles.reviewBtn}
+						onClick={() => setIsReviewOpened(prev => !prev)}
+					>
+						Читать отзывы
+					</Button>
+				</div>
+			</Card>
+
+			<Card 
+				color='blue' 
+				className={classNames(styles.review,{
+					[styles.opened]: isReviewOpened,
+					[styles.closed]: !isReviewOpened,
+				} ) }
+				ref={reviewRef}
+			>
+					{product.reviews.map(el => (
+						<React.Fragment key={el._id}>
+								<Review  review={el} />
+								<Divider/>
+						</React.Fragment>
+					))}
+					<ReviewForm productId={product._id} />
+			</Card>
+		</div>
 		
 	);
 };
