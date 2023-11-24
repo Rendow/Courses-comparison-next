@@ -9,11 +9,25 @@ import { declOfNum, priceRu } from '../../helpers/helpers';
 import { Divider } from '../Divider/Divider';
 import Image from 'next/image';
 import classNames from 'classnames';
-import React, { useRef, useState } from 'react';
+import React, { ForwardedRef, forwardRef, useRef, useState } from 'react';
 import { Review } from '../Review/Review';
 import { ReviewForm } from '../ReviewForm/ReviewForm';
+import { motion } from 'framer-motion';
 
-export const Product = ({ product,className, ...props }: ProductProps): JSX.Element => {
+const reviewVariants = {
+	visible: {
+		opacity: 1,
+		height: 'auto'
+	},
+	hidden: {
+		opacity: 0,
+		height: 0
+	}
+};
+
+
+// eslint-disable-next-line react/display-name
+export const Product = motion(forwardRef(({ product,className, ...props }: ProductProps, ref: ForwardedRef<HTMLDivElement>): JSX.Element => {
 
 	const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
 
@@ -28,7 +42,7 @@ export const Product = ({ product,className, ...props }: ProductProps): JSX.Elem
 	};
 	
 	return (
-		<div className={className}>
+		<div className={className} ref={ref}>
 			<Card className={styles.product}>
 				<div className={styles.logo}>
 					<Image 
@@ -100,24 +114,28 @@ export const Product = ({ product,className, ...props }: ProductProps): JSX.Elem
 					</Button>
 				</div>
 			</Card>
-
-			<Card 
-				color='blue' 
-				className={classNames(styles.review,{
-					[styles.opened]: isReviewOpened,
-					[styles.closed]: !isReviewOpened,
-				} ) }
-				ref={reviewRef}
+			<motion.div 
+				layout
+				variants={reviewVariants}
+				initial={'hidden'}
+				animate={isReviewOpened ? 'visible' : 'hidden'}
 			>
-					{product.reviews.map(el => (
-						<React.Fragment key={el._id}>
+				<Card 
+					color='blue' 
+					className={classNames(styles.review) }
+					ref={reviewRef}
+				>
+						{product.reviews.map(el => (
+							<React.Fragment key={el._id} >
 								<Review  review={el} />
 								<Divider/>
-						</React.Fragment>
-					))}
-					<ReviewForm productId={product._id} />
-			</Card>
+							</React.Fragment>
+							
+						))}
+						<ReviewForm productId={product._id} />
+				</Card>
+			</motion.div>
 		</div>
 		
 	);
-};
+}));

@@ -7,7 +7,7 @@ import { ForwardedRef, forwardRef } from 'react';
 export const Card = forwardRef((
 	{  children,className,color = 'white', ...props }: CardProps, 
 	ref: ForwardedRef<HTMLDivElement>
-): JSX.Element => {
+	): JSX.Element => {
 
 	return (
 		<div

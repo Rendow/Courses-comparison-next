@@ -1,6 +1,6 @@
 import {  DetailedHTMLProps, HTMLAttributes, ReactNode } from 'react';
 
 export interface SearchProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-	children: ReactNode;
+	children?: ReactNode;
 	size?: 's' | 'l' | 'm';
 }
