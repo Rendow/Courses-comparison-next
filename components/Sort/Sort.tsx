@@ -9,8 +9,8 @@ export const Sort = ({  sort, setSort, className, ...props }: SortProps): JSX.El
 
 	const onKeyDown = (key:KeyboardEvent, type: SortEnum) => {
 		if(['Space', 'Enter'].includes(key.code)){
-			key.preventDefault()
-			setSort(type)
+			key.preventDefault();
+			setSort(type);
 		}
 	};
 

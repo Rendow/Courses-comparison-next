@@ -1,4 +1,3 @@
-import axios from "axios";
 import { GetStaticPaths, GetStaticProps, GetStaticPropsContext } from "next";
 import { ParsedUrlQuery } from "querystring";
 import { generalApi } from "../../api/general";
@@ -6,13 +5,9 @@ import { firstLevelMenu } from "../../helpers/helpers";
 import { MenuItem } from "../../interfaces/menu.interfaces";
 import { withLayout } from "../../layout/Layout";
 
-function Type({ firstCategory }:TypeProps ) {
+function Type({ firstCategoryName }:TypeProps ) {
 	
-	return (
-		<>
-
-		</>
-	);
+	return <>Нет элементов меню у {firstCategoryName}</>;
 }
 
 export default withLayout(Type);

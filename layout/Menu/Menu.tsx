@@ -23,22 +23,15 @@ const variants = {
 	}
 }
 
-const variantsChildren = {
-	visible: {
-		opacity: 1,
-		height: 'auto' 
-	},
-	hidden: {
-		opacity: 0,
-		height: 0
-	}
-}
+
 
 export const Menu = (): JSX.Element => {
 	const { menu, setMenu, firstCategory } = useContext(AppContext);
 
 	const router = useRouter();
 	const [announce, setAnnounce] = useState<'closed' | 'opened' | undefined>()
+
+
 
 	const openSecondLevel = (secondCategory: string) => {
 		setMenu && setMenu(menu.map(m => {
@@ -100,6 +93,7 @@ export const Menu = (): JSX.Element => {
 							</button>
 							<motion.ul
 								layout
+								layoutRoot
 								variants={variants}
 								className={styles.secondLevelBlock}
 								initial={m.isOpened ? 'visible' : 'hidden'}
@@ -115,11 +109,24 @@ export const Menu = (): JSX.Element => {
 	};
 
 	const buildThirdLevel = (pages: PageItem[], route: string, isOpened:boolean) => {
+
+		const getVariants = (category: string) => {
+			return {
+				visible: {
+					opacity: 1,
+					height: category.length > 22 ? 40 : 29,
+				},
+				hidden: {
+					opacity: 0,
+					height: 0
+				}
+			}
+		};
+
 		return pages.map((p) => (
 			<motion.li 
-				variants={variantsChildren} 
+				variants={getVariants(p.category)} 
 				key={`/${route}/${p.alias}`}
-				
 			>
 				<Link
 					href={`/${route}/${p.alias}`}

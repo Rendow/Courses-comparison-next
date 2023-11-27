@@ -39,7 +39,7 @@ export const Product = motion(forwardRef(({ product,className, ...props }: Produ
 			behavior:'smooth',
 			block:'start',
 		});
-		reviewRef.current?.focus()
+		reviewRef.current?.focus();
 	};
 	
 	return (

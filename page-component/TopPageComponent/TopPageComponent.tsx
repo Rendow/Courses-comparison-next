@@ -1,11 +1,10 @@
-import { TopPageComponentProps } from './TopPageComponent.props';
-import styles from './TopPageComponent.module.css';
-import cn from 'classnames';
-import { Advantages, Card, HhData, Htag, P, Product, Sort, Tag } from '../../components';
-import { TopLevelCategory } from '../../interfaces/page.interfaces';
-import { SortEnum } from '../../components/Sort/Sort.props';
-import { sortReducer } from './sort.reducer';
 import { useEffect, useReducer } from 'react';
+import { Advantages, HhData, Htag, Product, Sort, Tag } from '../../components';
+import { SortEnum } from '../../components/Sort/Sort.props';
+import { TopLevelCategory } from '../../interfaces/page.interfaces';
+import styles from './TopPageComponent.module.css';
+import { TopPageComponentProps } from './TopPageComponent.props';
+import { sortReducer } from './sort.reducer';
 
 export const TopPageComponent = ({ products, firstCategory, page }: TopPageComponentProps): JSX.Element => {
 
