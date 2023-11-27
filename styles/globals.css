@@ -22,21 +22,21 @@ a {
 	--black: #3B434E;
 	--grey: #A4A4A4;
 	--grey-light: #EBEBEB;
-	--grey-dark: #6c7077;
+	--grey-dark: #6C7077;
 	--white: white;
-	--primary: #7351f5;
+	--primary: #7351F5;
 	--primary-hover: #6243DF;
 	--red-light: #FEA291;
 	--red: #FC836D;
-	--green: #007b48;
+	--green: #007B48;
 	--green-light: #C8F8E4;
 	--font-family: 'Noto Sans', sans-serif;
 }
 
 /* для скрин-риддеров */
 .visualyHidden{
-	height: 0;
-	width: 0;
-	overflow: hidden;
 	position: absolute;
+	overflow: hidden;
+	width: 0;
+	height: 0;
 }

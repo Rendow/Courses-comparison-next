@@ -8,9 +8,14 @@ import { ProductModel } from '../../interfaces/product.interfaces';
 import { withLayout } from '../../layout/Layout';
 import { TopPageComponent } from '../../page-component';
 import Head from 'next/head';
+import { Error404 } from '../404';
 
 
 function TopPage({ firstCategory, page, products }: TopPageProps): JSX.Element {
+
+	if(!page || !products){
+		return <Error404/>
+	}
 
 	return (
 		<>
