@@ -31,3 +31,6 @@
 .sort span:not(.active){
 	grid-template-columns: 1fr;
 }
+.sortLabel{
+	display: none;
+}

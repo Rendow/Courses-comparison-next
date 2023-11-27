@@ -11,7 +11,7 @@ import { IReviewForm } from './ReviewForm.interface';
 import { generalApi } from '../../api/general';
 import { useState } from 'react';
 
-export const ReviewForm = ({ className, productId, ...props }: ReviewFormProps): JSX.Element => {
+export const ReviewForm = ({ className, productId,isOpened, ...props }: ReviewFormProps): JSX.Element => {
 
 	const [isSuccessSend, setIsSuccessSend] = useState<boolean>(false);
 	const [errorMessage, setErrorMessage] = useState<string>();
@@ -22,6 +22,7 @@ export const ReviewForm = ({ className, productId, ...props }: ReviewFormProps):
 		handleSubmit,
 		formState: { errors },
 		reset,
+		clearErrors,
 	} = useForm<IReviewForm>({
 		defaultValues: {
 			name: '',
@@ -54,7 +55,13 @@ export const ReviewForm = ({ className, productId, ...props }: ReviewFormProps):
 						required: 'Заполните поле.',
 					}}
 					render={({ field }) => {
-						return <Input {...field} placeholder="Имя" error={errors.name} />;
+						return <Input 
+									{...field} 
+									placeholder="Имя" 
+									error={errors.name} 
+									tabIndex={isOpened ? 0 : -1}
+									aria-invalid={!!errors.name}
+								/>;
 					}}
 				/>
 				<Controller
@@ -64,7 +71,14 @@ export const ReviewForm = ({ className, productId, ...props }: ReviewFormProps):
 						required: 'Заполните поле.',
 					}}
 					render={({ field }) => {
-						return <Input {...field} placeholder="Заголовок" className={styles.title} error={errors.title} />;
+						return <Input 
+									{...field} 
+									tabIndex={isOpened ? 0 : -1} 
+									placeholder="Заголовок" 
+									className={styles.title} 
+									error={errors.title} 
+									aria-invalid={!!errors.title}
+								/>;
 					}}
 				/>
 				<div className={styles.rating}>
@@ -82,6 +96,7 @@ export const ReviewForm = ({ className, productId, ...props }: ReviewFormProps):
 										rating={field.value} 
 										ref={field.ref} 
 										error={errors.rating} 
+										tabIndex={isOpened ? 0 : -1}
 									/>;
 						}}
 					/>
@@ -98,25 +113,34 @@ export const ReviewForm = ({ className, productId, ...props }: ReviewFormProps):
 									placeholder="Текст отзыва" 
 									{...field}
 									error={errors.description}
+									tabIndex={isOpened ? 0 : -1}
+									aria-label='Текст отзыва'
+									aria-invalid={!!errors.description}
+
 								/>;
 					}}
 				/>
 
 				<div className={styles.submit}>
-					<Button appearance="primary"> Отправить</Button>
+					<Button appearance="primary" tabIndex={isOpened ? 0 : -1} onClick={() => clearErrors()}> Отправить</Button>
 					<span className={styles.info}>* Перед публикацией отзыв пройдет предварительную модерацию и проверку</span>
 				</div>
 			</div>
 			{isSuccessSend &&
-			<div className={cn(styles.success, styles.panel) }>
+			<div className={cn(styles.success, styles.panel) } role='alert'>
 				<div className={styles.successTitle}> Ваш отзыв отправлен</div>
 				<div>Спасибо, ваш отзыв будет опубликован после проверки.</div>
-				<CloseIcon className={styles.close} onClick={() => setIsSuccessSend(false)} />
+				<button  className={styles.close} onClick={() => setIsSuccessSend(false)} aria-label='Закрыть оповещение'>
+					<CloseIcon/>
+				</button>
+				
 			</div>}
 			{errorMessage &&
-			<div className={cn(styles.error, styles.panel) }>
+			<div className={cn(styles.error, styles.panel) } role='alert'>
 				Что-то пошло не так, попробуйте обновить страницу.
-				<CloseIcon className={styles.close} onClick={() => setErrorMessage(undefined)} />
+				<button onClick={() => setErrorMessage(undefined)} className={styles.close} aria-label='Закрыть оповещение'>
+					<CloseIcon />
+				</button>
 			</div>}
 		</form>
 	);

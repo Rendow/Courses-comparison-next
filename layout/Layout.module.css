@@ -22,12 +22,28 @@
 
 .body {
 	grid-area: body;
+	outline: none;
 }
 
 .footer {
 	grid-area: footer;
 }
-
+.skipLink{
+	display: block;
+	position: fixed;
+	top: -10px;
+	left: 100px;
+	overflow: hidden;
+	height: 0;
+	background-color: var(--primary);
+	color: var(--white);
+	padding: 3px;
+	border-radius: 5px;
+}
+.displayed{
+	top: 5px;
+	height: auto;
+}
 @media (max-width: 765px) {
 	.container {
 		grid-template-areas:
